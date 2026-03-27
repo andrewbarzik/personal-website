@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reading Log</title>
+  <style>* { cursor: none !important; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#5f5e60',
+            'surface': '#f9f9fb',
+            'surface-container-low': '#f2f4f6',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-high': '#e4e9ee',
+            'surface-container-highest': '#dde3e9',
+            'surface-container': '#ebeef2',
+            'surface-dim': '#d3dbe2',
+            'on-surface': '#2d3338',
+            'on-surface-variant': '#596065',
+            'on-background': '#2d3338',
+            'background': '#f9f9fb',
+            'outline-variant': '#acb3b8',
+            'outline': '#757c81',
+            'primary-dim': '#535254',
+            'inverse-surface': '#0c0e10',
+            'error': '#9f403d',
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { -webkit-font-smoothing: antialiased; overflow: hidden; }
+    @keyframes blink { 0%, 49% { opacity:1; } 50%, 100% { opacity:0; } }
+    .blink { animation: blink 1s step-end infinite; }
+    @media (max-width: 767px) {
+      body { overflow-y: auto !important; }
+      #rl-content { align-items: flex-start !important; height: auto !important; padding-top: 90px; padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body class="h-screen w-screen bg-white overflow-hidden">
+
+  <!-- Fixed header -->
+  <div class="fixed top-0 left-0 right-0 z-50 px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+    <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors pointer-events-auto">[ RETURN TO HOME ]</a>
+    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">READING LOG</span>
+  </div>
+
+  <!-- Main content -->
+  <div id="rl-content" class="flex items-center justify-center h-full">
+    <div class="max-w-2xl w-full px-8">
+
+      <!-- Heading group -->
+      <div id="section-books" class="mb-12">
+        <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f; margin-bottom:1.5rem;">[ BOOKS I'VE READ ] <span class="blink">‹</span></p>
+        <p class="text-[13px] leading-relaxed max-w-xl" style="color: rgba(89,96,101,0.8);">Welcome to my Roughly in descending order of recency and relative significance to me.</p>
+      </div>
+
+      <!-- Book list -->
+      <div class="flex flex-col gap-6">
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 01 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">On the shortness of life <span class="font-normal text-on-surface-variant">by Seneca</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 02 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Meditations <span class="font-normal text-on-surface-variant">by Marcus Aurelius</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 03 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Antifragile <span class="font-normal text-on-surface-variant">by Nassim Taleb</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 04 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Enchiridion <span class="font-normal text-on-surface-variant">by Epictetus</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 05 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">The Black Swan <span class="font-normal text-on-surface-variant">by Nassim Taleb</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 06 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Read Write Own <span class="font-normal text-on-surface-variant">by Chris Dixon</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 07 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">The Prince <span class="font-normal text-on-surface-variant">by Niccolò Machiavelli</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 08 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Beyond Good and Evil <span class="font-normal text-on-surface-variant">by Friedrich Nietzsche <span class="text-[11px] opacity-50">(modern translation)</span></span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 09 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Atomic Habits <span class="font-normal text-on-surface-variant">by James Clear</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 10 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Metamorphosis <span class="font-normal text-on-surface-variant">by Franz Kafka</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 11 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Thinking Fast and Slow <span class="font-normal text-on-surface-variant">by Daniel Kahneman</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 12 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Animal Farm <span class="font-normal text-on-surface-variant">by George Orwell</span></span>
+        </div>
+
+        <div class="flex items-baseline gap-2">
+          <span class="text-[10px] font-medium opacity-20 w-8 shrink-0">[ 13 ]</span>
+          <span class="text-[14px] font-medium tracking-tight text-on-surface">Clear Thinking <span class="font-normal text-on-surface-variant">by Shane Parrish</span></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Live clock -->
+  <div class="fixed bottom-8 right-12 flex flex-col items-end z-50">
+    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
+    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
+  </div>
+
+  <script>
+    function tick() {
+      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
+      document.getElementById('clock').textContent = t;
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+<script src="cursor.js"></script>
+</body>
+</html>

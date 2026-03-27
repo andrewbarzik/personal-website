@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Philosophy</title>
+  <style>* { cursor: none !important; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#5f5e60',
+            'surface': '#f9f9fb',
+            'surface-container-low': '#f2f4f6',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-high': '#e4e9ee',
+            'surface-container-highest': '#dde3e9',
+            'surface-container': '#ebeef2',
+            'surface-dim': '#d3dbe2',
+            'on-surface': '#2d3338',
+            'on-surface-variant': '#596065',
+            'on-background': '#2d3338',
+            'background': '#f9f9fb',
+            'outline-variant': '#acb3b8',
+            'outline': '#757c81',
+            'primary-dim': '#535254',
+            'inverse-surface': '#0c0e10',
+            'error': '#9f403d',
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { -webkit-font-smoothing: antialiased; overflow: hidden; }
+    @keyframes blink { 0%, 49% { opacity:1; } 50%, 100% { opacity:0; } }
+    .blink { animation: blink 1s step-end infinite; }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+    @media (max-width: 767px) {
+      #btn-prev { left: 1rem !important; top: auto !important; bottom: 0 !important; transform: none !important; }
+      #btn-next { right: 1rem !important; top: auto !important; bottom: 0 !important; transform: none !important; }
+      .quote-area { min-height: 300px !important; padding-bottom: 3rem; }
+      #quote-text { font-size: 1rem !important; }
+    }
+  </style>
+</head>
+<body class="h-screen bg-[#f9f9fb] overflow-hidden flex flex-col">
+
+  <!-- Subtle background -->
+  <div class="fixed inset-0 pointer-events-none -z-10 opacity-[0.06]" style="background: radial-gradient(ellipse at center, #2d3338 0%, transparent 70%);"></div>
+
+  <!-- Fixed header -->
+  <div class="fixed top-0 left-0 right-0 z-50 px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+    <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 hover:text-zinc-900 transition-colors pointer-events-auto">[ RETURN TO HOME ]</a>
+    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">PHILOSOPHY</span>
+  </div>
+
+  <!-- Main content -->
+  <div class="flex-grow flex items-center justify-center">
+    <div class="max-w-[1000px] w-full flex flex-col items-center px-8">
+
+      <!-- Section heading -->
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f; margin-bottom:5rem;">[ COLLECTED QUOTES ] <span class="blink" style="opacity:1;">‹</span></p>
+
+      <!-- Quote area -->
+      <div class="quote-area flex items-center justify-center w-full relative min-h-[400px]">
+
+        <!-- Quote counter -->
+        <span id="quote-counter" class="absolute top-0 left-0 text-[9px] font-bold tracking-[0.3em] uppercase" style="color: rgba(89,96,101,0.75);">01 / 03</span>
+
+        <!-- Previous button -->
+        <button
+          id="btn-prev"
+          class="absolute -left-12 md:-left-14 top-[44%] -translate-y-1/2 transition-opacity duration-200"
+          aria-label="Previous quote"
+        >
+          <span style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f;">[ previous ]</span>
+        </button>
+
+        <!-- Next button -->
+        <button
+          id="btn-next"
+          class="absolute -right-12 md:-right-14 top-[44%] -translate-y-1/2 transition-opacity duration-200"
+          aria-label="Next quote"
+        >
+          <span style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f;">[ next ]</span>
+        </button>
+
+        <!-- Quote block -->
+        <div class="flex flex-col items-center text-center max-w-2xl">
+          <p id="quote-text" class="text-xl md:text-2xl leading-relaxed mb-10" style="color: #1a1f24; font-family: 'Courier New', Courier, monospace; font-weight: 400; font-style: italic;"></p>
+          <span id="quote-author" class="text-[0.625rem] font-bold tracking-[0.25em] uppercase" style="color: #596065;"></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer hint -->
+  <div class="fixed bottom-12 left-0 right-0 flex justify-center pointer-events-none z-40">
+    <span class="text-[9px] tracking-[0.25em] uppercase" style="color: rgba(89,96,101,0.65);">Use arrow keys</span>
+  </div>
+
+  <!-- Live clock -->
+  <div class="fixed bottom-8 right-12 flex flex-col items-end z-50">
+    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
+    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
+  </div>
+
+  <script>
+    const quotes = [
+      { text: "A man who lives each day as it was his last, neither fears nor longs the next day.", author: "— SENECA" },
+      { text: "There is a certain beauty in chaos, in the uncontrollable.", author: "— UNKNOWN" },
+      { text: "It is not that we have a short time to live, but that we waste a great deal of it.", author: "— SENECA" },
+      { text: "A man then must stand upright, not be kept upright by others.", author: "— MARCUS AURELIUS" },
+    ];
+
+    let current = 0;
+
+    const quoteText   = document.getElementById('quote-text');
+    const quoteAuthor = document.getElementById('quote-author');
+    const counter     = document.getElementById('quote-counter');
+    const btnPrev     = document.getElementById('btn-prev');
+    const btnNext     = document.getElementById('btn-next');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function show(index) {
+      quoteText.textContent   = '\u201c' + quotes[index].text + '\u201d';
+      quoteAuthor.textContent = quotes[index].author;
+      counter.textContent     = pad(index + 1) + ' / ' + pad(quotes.length);
+      btnPrev.style.opacity        = index === 0 ? '0.2' : '0.7';
+      btnPrev.style.pointerEvents  = index === 0 ? 'none' : 'auto';
+      btnNext.style.opacity        = index === quotes.length - 1 ? '0.2' : '0.7';
+      btnNext.style.pointerEvents  = index === quotes.length - 1 ? 'none' : 'auto';
+    }
+
+    btnPrev.addEventListener('click', () => { if (current > 0) { current--; show(current); } });
+    btnNext.addEventListener('click', () => { if (current < quotes.length - 1) { current++; show(current); } });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft'  && current > 0)                  { current--; show(current); }
+      if (e.key === 'ArrowRight' && current < quotes.length - 1)  { current++; show(current); }
+    });
+
+    show(0);
+  </script>
+  <script>
+    function tick() {
+      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
+      document.getElementById('clock').textContent = t;
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+  <script src="cursor.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Athletics</title>
+  <style>* { cursor: none !important; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#5f5e60',
+            'surface': '#f9f9fb',
+            'surface-container-low': '#f2f4f6',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-high': '#e4e9ee',
+            'surface-container-highest': '#dde3e9',
+            'surface-container': '#ebeef2',
+            'surface-dim': '#d3dbe2',
+            'on-surface': '#2d3338',
+            'on-surface-variant': '#596065',
+            'on-background': '#2d3338',
+            'background': '#f9f9fb',
+            'outline-variant': '#acb3b8',
+            'outline': '#757c81',
+            'primary-dim': '#535254',
+            'inverse-surface': '#0c0e10',
+            'error': '#9f403d',
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { -webkit-font-smoothing: antialiased; overflow: hidden; }
+    @keyframes blink { 0%, 49% { opacity:1; } 50%, 100% { opacity:0; } }
+    .blink { animation: blink 1s step-end infinite; }
+    @media (max-width: 767px) {
+      body { overflow-y: auto !important; }
+      #ath-scroll { overflow-y: auto !important; }
+      #ath-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
+      #ath-quote-row { flex-direction: column !important; gap: 1.5rem !important; }
+      #ath-image { width: 100% !important; height: 200px !important; }
+    }
+  </style>
+</head>
+<body class="h-screen w-screen bg-white overflow-hidden">
+
+  <!-- Fixed header -->
+  <div class="fixed top-0 left-0 right-0 z-50 px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+    <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors pointer-events-auto">[ RETURN TO HOME ]</a>
+    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">ATHLETICS</span>
+  </div>
+
+  <!-- Main content -->
+  <div id="ath-scroll" style="height:100vh; overflow-y:auto; padding-top:90px; padding-bottom:120px; display:flex; justify-content:center;">
+    <div id="ath-container" style="display:flex; flex-direction:column; gap:0; width:700px;">
+
+      <style>
+        .bullet-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem; }
+        .bullet-list li { font-size:15px; line-height:1.8; color:#6b7280; padding-left:1.2rem; position:relative; }
+        .bullet-list li::before { content:''; position:absolute; left:0; top:0.75em; width:4px; height:4px; border-radius:50%; background:#c8c8ca; }
+      </style>
+
+      <!-- Top section: quote + image -->
+      <div id="ath-quote-row" style="display:flex; align-items:center; justify-content:space-between; gap:2rem; margin-bottom:3.5rem;">
+
+        <!-- Left: quote block -->
+        <div style="flex:1;">
+          <p style="font-size:18px; font-weight:400; font-style:italic; line-height:1.7; color:#27272a; margin-bottom:1rem; max-width:22rem; font-family:'Courier New', Courier, monospace;">
+            "It is a shame for a man to grow old without seeing the beauty and strength of which his body is capable."
+          </p>
+          <span style="font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#596065;">— SOCRATES</span>
+        </div>
+
+        <!-- Right: image -->
+        <div id="ath-image" style="width:140px; height:140px; border-radius:0.75rem; overflow:hidden; flex-shrink:0;">
+          <img src="assets/Calisthenics.jpg" alt="Calisthenics" style="width:100%; height:100%; object-fit:cover; filter:grayscale(100%);" />
+        </div>
+
+      </div>
+
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f; margin-bottom:1.5rem;">[ ACCOMPLISHMENTS ] <span id="blink-accomplishments" style="opacity:0;">‹</span></p>
+
+      <div id="section-accomplishments" style="position:relative; padding:1.25rem 1.5rem;">
+        <div style="position:absolute; top:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <ul class="bullet-list">
+          <li>UK nationals athlete in calisthenics in streetlifting (under 80kg)</li>
+          <li>Started calisthenics in 2021 in Ukraine</li>
+          <li>Had the previledge of coaching 2 clients</li>
+          <li>Besides calisthenics, I rock climb and like skiing (despite doing it very rarely recently)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Live clock -->
+  <div class="fixed bottom-8 right-12 flex flex-col items-end z-50">
+    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
+    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
+  </div>
+
+  <script>
+    function tick() {
+      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
+      document.getElementById('clock').textContent = t;
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+  <script>
+    document.addEventListener('mousemove', (e) => {
+      const rect = document.getElementById('section-accomplishments').getBoundingClientRect();
+      const indicator = document.getElementById('blink-accomplishments');
+      const inside = e.clientY >= rect.top && e.clientY <= rect.bottom;
+      indicator.style.opacity = inside ? '1' : '0';
+      indicator.classList.toggle('blink', inside);
+    });
+  </script>
+  <script src="cursor.js"></script>
+</body>
+</html>

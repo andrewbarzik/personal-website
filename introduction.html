@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction — Digital Curator</title>
+  <style>* { cursor: none !important; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#f9f9fb',
+            'on-surface': '#2d3338',
+            'on-surface-variant': '#596065',
+            'background': '#f9f9fb',
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { -webkit-font-smoothing: antialiased; overflow: hidden; }
+  </style>
+</head>
+<body class="h-screen w-screen bg-[#f9f9fb] overflow-hidden">
+
+  <!-- Fixed header -->
+  <div class="fixed top-0 left-0 right-0 z-50 px-10 py-8 flex justify-between items-start">
+    <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors">[ RETURN TO HOME ]</a>
+    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">INTRODUCTION</span>
+  </div>
+
+  <style>
+    .photo-bw { filter: grayscale(100%); transition: filter 0.5s ease; border-radius: 0.75rem; }
+    .photo-bw:hover { filter: grayscale(0%); }
+    .section-link { display:flex; align-items:baseline; gap:0.75rem; text-decoration:none; }
+    .link-label { color:#9ca3af; transition: color 0.2s ease; }
+    .link-label:hover { color: #1d1d1f; }
+    @media (max-width: 767px) {
+      body { overflow-y: auto !important; }
+      #intro-outer { height: auto !important; align-items: flex-start !important; padding-top: 90px; padding-bottom: 80px; }
+      #intro-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
+      #intro-heading-row { flex-direction: column-reverse !important; align-items: flex-start !important; gap: 1rem !important; }
+      #photo-wrap { margin-left: 0 !important; }
+      .link-label { white-space: normal !important; }
+    }
+  </style>
+
+  <!-- Main content -->
+  <div id="intro-outer" style="height:100vh; display:flex; align-items:center; justify-content:center;">
+    <div id="intro-container" style="display:flex; flex-direction:column; gap:0; width:780px;">
+
+      <!-- Heading row: name + photo side by side -->
+      <div id="intro-heading-row" style="display:flex; align-items:center; gap:1.5rem;">
+        <h1 style="font-size:30px; font-weight:600; color:#1d1d1f; letter-spacing:-0.02em; line-height:1.3;">
+          Hey, I am Andrew Barzik
+        </h1>
+        <div id="photo-wrap" style="position:relative; display:inline-flex; flex-shrink:0; margin-left:30px; border-radius:0.75rem; overflow:hidden;">
+          <img
+            id="profile-photo"
+            src="assets/photo_2026-03-23_19-40-11.jpg"
+            alt="Andrew Barzik"
+            class="photo-bw"
+            style="width:80px; height:auto; display:block;"
+          />
+          <canvas id="hacker-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:1; transition:opacity 0.5s ease; pointer-events:none;"></canvas>
+        </div>
+      </div>
+
+      <div style="height:1px; background:#e5e7eb; margin:2.5rem 0;"></div>
+
+      <!-- Bio with corner markers -->
+      <div style="position:relative; padding:1.25rem 1.5rem;">
+        <div style="position:absolute; top:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <p style="font-size:15px; line-height:1.8; color:#6b7280;">
+          Welcome to my website. I built it to give an overview of the things that I have done and to help anyone build a picture of me culturally. Explore sections to learn more about the things I am the most obsessed with (crypto markets, athletics, philosophy, and AI) and feel free to get in touch as I would love to shake everyone's hand personally.
+        </p>
+      </div>
+
+      <div style="height:1px; background:#e5e7eb; margin:2.5rem 0;"></div>
+
+      <!-- Section links -->
+      <nav style="display:flex; flex-direction:column; gap:1rem;">
+        <div class="section-link">
+          <a href="signalling.html" class="link-label" style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; white-space:nowrap; text-decoration:none;">[ Signalling ]</a>
+          <span style="font-size:15px; color:#9ca3af;">— My background / informal CV</span>
+        </div>
+        <div class="section-link">
+          <a href="philosophy.html" class="link-label" style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; white-space:nowrap; text-decoration:none;">[ Philosophy ]</a>
+          <span style="font-size:15px; color:#9ca3af;">— A collection of quotes and concepts that influenced me</span>
+        </div>
+        <div class="section-link">
+          <a href="athletics.html" class="link-label" style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; white-space:nowrap; text-decoration:none;">[ Athletics ]</a>
+          <span style="font-size:15px; color:#9ca3af;">— Physical culture / accomplishments</span>
+        </div>
+        <div class="section-link">
+          <a href="reading-log.html" class="link-label" style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; white-space:nowrap; text-decoration:none;">[ Reading Log ]</a>
+          <span style="font-size:15px; color:#9ca3af;">— A collection of books that I have read</span>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- Live clock -->
+  <div class="fixed bottom-8 right-10 flex flex-col items-end z-50">
+    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
+    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
+  </div>
+
+  <script>
+    function tick() {
+      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
+      document.getElementById('clock').textContent = t;
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+  <script>
+    (function () {
+      const wrap   = document.getElementById('photo-wrap');
+      const photo  = document.getElementById('profile-photo');
+      const canvas = document.getElementById('hacker-canvas');
+      const ctx    = canvas.getContext('2d');
+      let timer, active = true;
+
+      function resize() {
+        canvas.width  = photo.offsetWidth;
+        canvas.height = photo.offsetHeight;
+      }
+
+      function draw() {
+        if (!active) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const cols = 9, rows = 12;
+        const cw = canvas.width  / cols;
+        const ch = canvas.height / rows;
+        const r  = 1.5;
+
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            if (Math.random() > 0.65) continue;
+            const op = Math.random() * 0.45 + 0.1;
+            ctx.fillStyle = `rgba(62,207,110,${op})`;
+            ctx.beginPath();
+            ctx.arc(col * cw + cw / 2, row * ch + ch / 2, r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        timer = setTimeout(() => requestAnimationFrame(draw), 140);
+      }
+
+      // Start animation immediately
+      resize();
+      draw();
+
+      wrap.addEventListener('mouseenter', () => {
+        active = false;
+        clearTimeout(timer);
+        canvas.style.opacity = '0';
+      });
+
+      wrap.addEventListener('mouseleave', () => {
+        active = true;
+        resize();
+        canvas.style.opacity = '1';
+        draw();
+      });
+    })();
+  </script>
+  <script src="cursor.js"></script>
+</body>
+</html>

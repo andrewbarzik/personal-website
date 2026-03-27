@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signalling — Digital Curator</title>
+  <style>* { cursor: none !important; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#f9f9fb',
+            'on-surface': '#2d3338',
+            'on-surface-variant': '#596065',
+            'background': '#f9f9fb',
+            'outline-variant': '#acb3b8',
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="h-screen w-screen" style="background:#f9f9fb;">
+
+  <!-- Fixed header -->
+  <div class="fixed top-0 left-0 right-0 z-50 px-10 py-8 flex justify-between items-start">
+    <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors">[ RETURN TO HOME ]</a>
+    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">SIGNALLING</span>
+  </div>
+
+  <style>
+    .cv-entry { display:flex; flex-direction:column; gap:0.6rem; }
+    .cv-header { display:flex; justify-content:space-between; align-items:baseline; }
+    .cv-role { font-size:13px; font-weight:600; color:#1d1d1f; }
+    .cv-date { font-size:15px; color:#6b7280; }
+    @keyframes blink { 0%, 49% { opacity:1; } 50%, 100% { opacity:0; } }
+    .blink { animation: blink 1s step-end infinite; }
+    .bullet-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem; }
+    .bullet-list li { font-size:15px; line-height:1.8; color:#6b7280; padding-left:1.2rem; position:relative; }
+    .bullet-list li::before { content:''; position:absolute; left:0; top:0.75em; width:4px; height:4px; border-radius:50%; background:#c8c8ca; }
+    @media (max-width: 767px) {
+      #sig-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
+      .cv-header { flex-direction: column !important; gap: 0.2rem !important; }
+      .cv-date { font-size: 12px !important; }
+    }
+  </style>
+
+  <!-- Main content — scrollable to handle CV length -->
+  <div style="height:100vh; overflow-y:auto; padding-top:90px; padding-bottom:120px; display:flex; justify-content:center;">
+    <div id="sig-container" style="display:flex; flex-direction:column; gap:0; width:700px;">
+
+      <!-- Intro text -->
+      <div style="position:relative; padding:1.25rem 1.5rem;">
+        <div style="position:absolute; top:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <p style="font-size:15px; line-height:1.8; color:#6b7280;">Welcome to the signalling section of my website. Here I built a one page overview of my experience, work, and things that I have done.</p>
+      </div>
+
+      <div style="height:1px; flex-shrink:0; width:100%; background:#d1d5db; margin:3.5rem 0;"></div>
+
+      <!-- Block 1: What I've Done -->
+      <div id="section-experience" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f;">[ Experience ] <span id="blink-experience" style="opacity:0;">‹</span></p>
+
+        <!-- CV entries -->
+        <div style="position:relative; padding:1.25rem 1.5rem;">
+          <div style="position:absolute; top:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+        <div style="display:flex; flex-direction:column; gap:2.5rem;">
+
+          <div class="cv-entry">
+            <div class="cv-header">
+              <span class="cv-role">Business Development Manager, NDA</span>
+              <span class="cv-date">Jan 2026 — present</span>
+            </div>
+            <ul class="bullet-list">
+              <li>Most recently, I have been doing business development for a web3 company in the intersection of web3 and gambling.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-header">
+              <span class="cv-role">Business Development Representative, Whitechain</span>
+              <span class="cv-date">Jun 2024 — Jan 2026</span>
+            </div>
+            <ul class="bullet-list">
+              <li>I built out ecosystem development pipelines and selected teams for the company's grants program.</li>
+              <li>Sourced leads from both industry events and targeted outreach.</li>
+              <li>Managed relationships with ambassadors in the L1 ecosystem.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-header">
+              <span class="cv-role">Intern, Whitechain</span>
+              <span class="cv-date">Apr 2024 — Jun 2024</span>
+            </div>
+            <ul class="bullet-list">
+              <li>I primarily helped with marketing tasks related to driving the adoption of company's GameFi product.</li>
+              <li>Supported social media managers in building content for the product's marketing channels.</li>
+            </ul>
+          </div>
+
+        </div>
+        </div>
+      </div>
+
+      <div style="height:1px; flex-shrink:0; width:100%; background:#d1d5db; margin:2.5rem 0;"></div>
+
+      <!-- Block 2: Extra-Curriculum -->
+      <div id="section-etcetera" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f;">[ ET CETERA ] <span id="blink-etcetera" style="opacity:0;">‹</span></p>
+        <div style="position:relative; padding:1.25rem 1.5rem;">
+          <div style="position:absolute; top:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <ul class="bullet-list">
+              <li>Superteam UK member</li>
+              <li>Attended crypto industry conferences and spoke at crypto events (once helped to co-host one)</li>
+              <li>I code Python, TS</li>
+              <li>In my free time I vibe code and build things with AI</li>
+              <li>I speak 3 languages natively</li>
+              <li>UK nationals athlete in calisthenics [athletics]</li>
+            </ul>
+        </div>
+      </div>
+
+      <div style="height:1px; flex-shrink:0; width:100%; background:#d1d5db; margin:2.5rem 0;"></div>
+
+      <!-- Block 3: Education -->
+      <div id="section-education" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f;">[ Education ] <span id="blink-education" style="opacity:0;">‹</span></p>
+        <div style="position:relative; padding:1.25rem 1.5rem;">
+          <div style="position:absolute; top:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
+          <div class="cv-entry">
+            <div class="cv-header">
+              <span class="cv-role">Loreto College (Manchester, UK)</span>
+            </div>
+            <ul class="bullet-list">
+              <li>A-levels: Mathematics, Economics, Physics</li>
+              <li>AS-levels: Further Mathematics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:120px; flex-shrink:0;"></div>
+    </div>
+  </div>
+
+  <!-- Live clock -->
+  <div class="fixed bottom-8 right-10 flex flex-col items-end z-50">
+    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
+    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
+  </div>
+
+  <script>
+    function tick() {
+      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
+      document.getElementById('clock').textContent = t;
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+  <script>
+    const blinkSections = [
+      { sectionId: 'section-experience', blinkId: 'blink-experience' },
+      { sectionId: 'section-etcetera',   blinkId: 'blink-etcetera'   },
+      { sectionId: 'section-education',  blinkId: 'blink-education'  },
+    ];
+
+    document.addEventListener('mousemove', (e) => {
+      blinkSections.forEach(({ sectionId, blinkId }) => {
+        const rect = document.getElementById(sectionId).getBoundingClientRect();
+        const indicator = document.getElementById(blinkId);
+        const inside = e.clientY >= rect.top && e.clientY <= rect.bottom;
+        indicator.style.opacity = inside ? '1' : '0';
+        indicator.classList.toggle('blink', inside);
+      });
+    });
+  </script>
+  <script src="cursor.js"></script>
+</body>
+</html>
