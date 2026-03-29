@@ -48,18 +48,31 @@
     .animate-slow-reverse { animation: rotate-slow 180s linear infinite reverse; }
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
     .blink { animation: blink 1s step-end infinite; }
+    #mobile-layout {
+      display: none;
+      position: fixed;
+      inset: 0;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 1.5rem 2rem;
+      gap: 2rem;
+      z-index: 10;
+    }
+    #mobile-nav { display: flex; flex-direction: column; gap: 0.75rem; }
+    #mobile-nav button { display: block; text-align: left; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
     @media (max-width: 767px) {
       #sidebar { display: none !important; }
-      #main-area { padding-left: 0 !important; margin-left: 0 !important; }
-      #card-inner { width: calc(100vw - 3rem) !important; }
+      #main-area { display: none !important; }
       #keys-hint { display: none !important; }
+      #mobile-layout { display: flex !important; }
+      #clock-widget { display: none !important; }
     }
   </style>
 </head>
 <body class="h-screen w-screen bg-[#f9f9fb] overflow-hidden">
 
   <!-- Hero mesh background -->
-  <canvas id="hero-bg" style="position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;"></canvas>
+  <canvas id="hero-bg" style="position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; touch-action:none;"></canvas>
 
   <!-- Section overlay — loaded via fetch so cursor never navigates away -->
   <div id="section-overlay" style="display:none; position:fixed; inset:0; background:#f9f9fb; z-index:200; overflow-y:auto;">
@@ -76,6 +89,23 @@
         <!-- Built by JS -->
       </nav>
       <p id="keys-hint" class="text-center text-[9px] font-medium tracking-[0.15em] uppercase text-zinc-400 mt-6">Use keys to navigate</p>
+    </div>
+  </div>
+
+  <!-- Mobile layout (hidden on desktop) -->
+  <div id="mobile-layout">
+    <div id="mobile-nav"></div>
+    <div id="mobile-card" style="background:white; border-radius:2rem; box-shadow:0 10px 40px rgba(0,0,0,0.04); overflow:hidden; transition:opacity 0.2s ease;">
+      <div id="mobile-card-image-wrap" style="width:100%; height:180px; overflow:hidden; display:none;">
+        <img id="mobile-card-image" src="" alt="" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+      <div style="padding:2rem; display:flex; flex-direction:column; gap:1.25rem;">
+        <h2 id="mobile-card-title" style="font-size:14px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600; color:#18181b;"></h2>
+        <p id="mobile-card-desc" style="font-size:13px; line-height:1.6; color:#71717a; font-weight:500;"></p>
+        <div style="display:flex; justify-content:center;">
+          <button id="mobile-access-btn" style="padding:0.75rem 2.5rem; background:transparent; color:#18181b; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; font-family:'Inter',sans-serif; border:none;">[ ACCESS ]</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -119,7 +149,7 @@
     const sections = [
       { id: 'introduction', label: 'INTRODUCTION', index: 1, desc: 'A purpose of the website / an overview of the sections.',                              url: 'introduction.html', image: 'assets/hands.jpg',             imagePosition: 'center' },
       { id: 'signalling',   label: 'SIGNALLING',   index: 2, desc: 'An overview of the things that I have done or learned / informal CV.',             url: 'signalling.html',   image: 'assets/pilot_signalling.jpg',  imagePosition: 'center' },
-      { id: 'philosophy',   label: 'PHILOSOPHY',   index: 3, desc: 'A collection of quotes / concepts that influenced my character.',            url: 'philosophy.html',   image: 'assets/salzburg_philosophy.jpg', imagePosition: 'center' },
+      { id: 'philosophy',   label: 'PHILOSOPHY',   index: 3, desc: 'A collection of quotes / aphorisms that influenced my character.',            url: 'philosophy.html',   image: 'assets/salzburg_philosophy.jpg', imagePosition: 'center' },
       { id: 'athletics',    label: 'ATHLETICS',    index: 4, desc: 'My obsession and pursuit in athletics / accomplishments.',                          url: 'athletics.html',    image: 'assets/azariancross.jpg',      imagePosition: 'top' },
       { id: 'reading',      label: 'READING LOG',  index: 5, desc: 'A collection of books that I have read / reread in the last year or so.',                        url: 'reading-log.html',  image: 'assets/bookstore.jpg',         imagePosition: 'center' },
     ];
@@ -131,6 +161,8 @@
       athletics:    { x: 54,  y: 472 },
       reading:      { x: 40,  y: 150 },
     };
+
+    sections.forEach(s => { if (s.image) { const i = new Image(); i.src = s.image; } });
 
     let activeId = 'introduction';
 
@@ -152,15 +184,28 @@
         btn.addEventListener('click', () => setActive(section.id));
         nav.appendChild(btn);
       });
+
+      const mobileNav = document.getElementById('mobile-nav');
+      mobileNav.innerHTML = '';
+      sections.forEach(section => {
+        const isActive = section.id === activeId;
+        const btn = document.createElement('button');
+        btn.style.color = isActive ? '#1d1d1f' : '#86868b';
+        btn.innerHTML = section.label + (isActive ? ' <span class="blink">‹</span>' : '');
+        btn.addEventListener('click', () => setActive(section.id));
+        mobileNav.appendChild(btn);
+      });
     }
 
     function updateDots(id) { /* dots removed with orbit */ }
 
     function setActive(id) {
       const card = document.getElementById('card-inner');
+      const mobileCard = document.getElementById('mobile-card');
 
-      // Fade out card and mesh highlight together
+      // Fade out cards
       card.style.opacity = '0';
+      mobileCard.style.opacity = '0';
       if (window.setMeshHighlight) window.setMeshHighlight(false);
       const line = document.getElementById('active-line');
       if (line) line.style.opacity = '0';
@@ -169,9 +214,9 @@
         activeId = id;
         const section = sections.find(s => s.id === id);
 
+        // Update desktop card
         document.getElementById('card-title').textContent = section.label;
         document.getElementById('card-desc').textContent = section.desc;
-
         const imageWrap = document.getElementById('card-image-wrap');
         const img = document.getElementById('card-image');
         if (section.image) {
@@ -182,18 +227,32 @@
           imageWrap.classList.add('hidden');
           img.src = '';
         }
-
         const btn = document.getElementById('access-btn');
         btn.style.opacity = '';
         btn.style.pointerEvents = '';
         btn.onclick = () => openSection(section.url);
 
+        // Update mobile card
+        document.getElementById('mobile-card-title').textContent = section.label;
+        document.getElementById('mobile-card-desc').textContent = section.desc;
+        const mobileImageWrap = document.getElementById('mobile-card-image-wrap');
+        const mobileImg = document.getElementById('mobile-card-image');
+        if (section.image) {
+          mobileImg.src = section.image;
+          mobileImg.style.objectPosition = section.imagePosition || 'center';
+          mobileImageWrap.style.display = '';
+        } else {
+          mobileImageWrap.style.display = 'none';
+          mobileImg.src = '';
+        }
+        document.getElementById('mobile-access-btn').onclick = () => openSection(section.url);
+
         updateDots(id);
         buildNav();
 
-        // Update line endpoint to match new active dot
-        // Fade in card and mesh highlight together, return camera
+        // Fade in cards
         card.style.opacity = '1';
+        mobileCard.style.opacity = '1';
         if (window.setMeshActive)      window.setMeshActive(id);
         if (window.setMeshHighlight)   window.setMeshHighlight(true);
         if (window.setMeshPunchReturn) window.setMeshPunchReturn();

@@ -52,6 +52,7 @@
     .bullet-list li { font-size:15px; line-height:1.8; color:#6b7280; padding-left:1.2rem; position:relative; }
     .bullet-list li::before { content:''; position:absolute; left:0; top:0.75em; width:4px; height:4px; border-radius:50%; background:#c8c8ca; }
     @media (max-width: 767px) {
+      #clock-widget { display: none !important; }
       #sig-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
       .cv-header { flex-direction: column !important; gap: 0.2rem !important; }
       .cv-date { font-size: 12px !important; }
@@ -68,7 +69,7 @@
         <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
         <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
         <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
-        <p style="font-size:15px; line-height:1.8; color:#6b7280;">Welcome to the signalling section of my website. Here I built a one page overview of my experience, work, and things that I have done.</p>
+        <p style="font-size:15px; line-height:1.8; color:#6b7280;">Welcome to the signalling, aka credentials, section of my website. On this page I built an overview of my experience, work, and things that I have done, which is perhaps similar to an informal CV.</p>
       </div>
 
       <div style="height:1px; flex-shrink:0; width:100%; background:#d1d5db; margin:3.5rem 0;"></div>
@@ -91,7 +92,7 @@
               <span class="cv-date">Jan 2026 — present</span>
             </div>
             <ul class="bullet-list">
-              <li>Most recently, I have been doing business development for a web3 company in the intersection of web3 and gambling.</li>
+              <li>Most recently, I have been doing business development for a web3 company.</li>
             </ul>
           </div>
 
@@ -101,9 +102,9 @@
               <span class="cv-date">Jun 2024 — Jan 2026</span>
             </div>
             <ul class="bullet-list">
-              <li>I built out ecosystem development pipelines and selected teams for the company's grants program.</li>
-              <li>Sourced leads from both industry events and targeted outreach.</li>
-              <li>Managed relationships with ambassadors in the L1 ecosystem.</li>
+              <li>I built out ecosystem development pipeline and selected teams for the company's grants program.</li>
+              <li>Found leads at both industry events and via targeted outreach.</li>
+              <li>Managed relationships with existing teams in the ecosystem.</li>
             </ul>
           </div>
 
@@ -113,7 +114,7 @@
               <span class="cv-date">Apr 2024 — Jun 2024</span>
             </div>
             <ul class="bullet-list">
-              <li>I primarily helped with marketing tasks related to driving the adoption of company's GameFi product.</li>
+              <li>I primarily helped with marketing tasks related to driving the early adoption of company's GameFi product.</li>
               <li>Supported social media managers in building content for the product's marketing channels.</li>
             </ul>
           </div>
@@ -134,11 +135,12 @@
           <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
           <ul class="bullet-list">
               <li>Superteam UK member</li>
-              <li>Attended crypto industry conferences and spoke at crypto events (once helped to co-host one)</li>
+              <li>Attended crypto industry conferences and spoke at crypto events</li>
+              <li>Helped with hosting a crypto event</li>
               <li>I code Python, TS</li>
-              <li>In my free time I vibe code and build things with AI</li>
+              <li>Built n personal tools with AI</li>
               <li>I speak 3 languages natively</li>
-              <li>UK nationals athlete in calisthenics [athletics]</li>
+              <li>UK nationals <a href="athletics.html" style="text-decoration:underline; text-decoration-skip-ink:none; color:#6b7280; transition:color 0.2s ease;" onmouseover="this.style.color='rgb(62,207,110)'" onmouseout="this.style.color='#6b7280'">athlete</a> in calisthenics</li>
             </ul>
         </div>
       </div>
@@ -170,7 +172,7 @@
   </div>
 
   <!-- Live clock -->
-  <div class="fixed bottom-8 right-10 flex flex-col items-end z-50">
+  <div id="clock-widget" class="fixed bottom-8 right-10 flex flex-col items-end z-50">
     <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
     <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
   </div>

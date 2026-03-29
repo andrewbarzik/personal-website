@@ -1,4 +1,5 @@
 (function () {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
   // ── Cursor element ──────────────────────────────────────────────────────────
   // Container: 22×22px, center at (11,11)
   // Circle:    6×6px hollow, positioned at top:8 left:8 → edges at y=8,y=14,x=8,x=14

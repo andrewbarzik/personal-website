@@ -61,6 +61,7 @@
       -webkit-font-smoothing: antialiased;
     }
     @media (max-width: 767px) {
+      #clock-widget { display: none !important; }
       #btn-prev { left: 1rem !important; top: auto !important; bottom: 0 !important; transform: none !important; }
       #btn-next { right: 1rem !important; top: auto !important; bottom: 0 !important; transform: none !important; }
       .quote-area { min-height: 300px !important; padding-bottom: 3rem; }
@@ -80,11 +81,11 @@
   </div>
 
   <!-- Main content -->
-  <div class="flex-grow flex items-center justify-center">
+  <div class="min-h-screen flex items-center justify-center">
     <div class="max-w-[1000px] w-full flex flex-col items-center px-8">
 
       <!-- Section heading -->
-      <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f; margin-bottom:5rem;">[ COLLECTED QUOTES ] <span class="blink" style="opacity:1;">‹</span></p>
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1d1d1f; margin-bottom:5rem;">[ COLLECTED QUOTES AND APHORISMS ] <span class="blink" style="opacity:1;">‹</span></p>
 
       <!-- Quote area -->
       <div class="quote-area flex items-center justify-center w-full relative min-h-[400px]">
@@ -126,7 +127,7 @@
   </div>
 
   <!-- Live clock -->
-  <div class="fixed bottom-8 right-12 flex flex-col items-end z-50">
+  <div id="clock-widget" class="fixed bottom-8 right-12 flex flex-col items-end z-50">
     <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
     <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
   </div>
@@ -134,9 +135,14 @@
   <script>
     const quotes = [
       { text: "A man who lives each day as it was his last, neither fears nor longs the next day.", author: "— SENECA" },
+      { text: "Talking nonsense is the sole privilege mankind possesses over the other organisms. It's by talking nonsense that one gets to the truth.", author: "— FYODOR DOSTOEVSKY" },
       { text: "There is a certain beauty in chaos, in the uncontrollable.", author: "— UNKNOWN" },
       { text: "It is not that we have a short time to live, but that we waste a great deal of it.", author: "— SENECA" },
       { text: "A man then must stand upright, not be kept upright by others.", author: "— MARCUS AURELIUS" },
+      { text: "That which does not kill me, makes me stronger.", author: "— FRIEDRICH NIETZSCHE" },
+      { text: "Grant me the serenity to accept the things I cannot change, courage to change the things that I can, and wisdom to know the difference.", author: "— REINHOLD NIEBUHR" },
+      { text: "It is my ambition to say in ten sentences what everyone else says in a book.", author: "— FRIEDRICH NIETZSCHE" },
+      { text: "Cowards die many times before their deaths; the valiant never taste of death but once.", author: "— WILLIAM SHAKESPEARE" },
     ];
 
     let current = 0;

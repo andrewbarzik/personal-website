@@ -47,6 +47,7 @@
     .link-label { color:#9ca3af; transition: color 0.2s ease; }
     .link-label:hover { color: #1d1d1f; }
     @media (max-width: 767px) {
+      #clock-widget { display: none !important; }
       body { overflow-y: auto !important; }
       #intro-outer { height: auto !important; align-items: flex-start !important; padding-top: 90px; padding-bottom: 80px; }
       #intro-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
@@ -86,7 +87,7 @@
         <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
         <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
         <p style="font-size:15px; line-height:1.8; color:#6b7280;">
-          Welcome to my website. I built it to give an overview of the things that I have done and to help anyone build a picture of me culturally. Explore sections to learn more about the things I am the most obsessed with (crypto markets, athletics, philosophy, and AI) and feel free to get in touch as I would love to shake everyone's hand personally.
+          Welcome to my website. I built it to give an overview of the things that I have done and to help anyone build a picture of me culturally. Explore sections to learn more about the things I am the most obsessed with (crypto markets, athletics, philosophy, and AI) and feel free to <a href="https://mail.google.com/mail/?view=cm&to=barzikandrew@gmail.com" target="_blank" rel="noopener" style="text-decoration:underline; text-decoration-skip-ink:none; color:#6b7280; transition:color 0.2s ease;" onmouseover="this.style.color='rgb(62,207,110)'" onmouseout="this.style.color='#6b7280'">get in touch</a> as I would love to shake everyone's hand personally.
         </p>
       </div>
 
@@ -116,7 +117,7 @@
   </div>
 
   <!-- Live clock -->
-  <div class="fixed bottom-8 right-10 flex flex-col items-end z-50">
+  <div id="clock-widget" class="fixed bottom-8 right-10 flex flex-col items-end z-50">
     <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
     <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
   </div>
@@ -165,9 +166,13 @@
         timer = setTimeout(() => requestAnimationFrame(draw), 140);
       }
 
-      // Start animation immediately
-      resize();
-      draw();
+      // Start animation once the image has its dimensions
+      function start() { resize(); draw(); }
+      if (photo.complete && photo.naturalWidth > 0) {
+        start();
+      } else {
+        photo.addEventListener('load', start);
+      }
 
       wrap.addEventListener('mouseenter', () => {
         active = false;
