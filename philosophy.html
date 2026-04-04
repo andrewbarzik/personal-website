@@ -154,51 +154,49 @@
   </div>
 
   <script>
-    const quotes = [
-      { text: "A man who lives each day as it was his last, neither fears nor longs the next day.", author: "— SENECA" },
-      { text: "Talking nonsense is the sole privilege mankind possesses over the other organisms. It's by talking nonsense that one gets to the truth.", author: "— FYODOR DOSTOEVSKY" },
-      { text: "There is a certain beauty in chaos, in the uncontrollable.", author: "— UNKNOWN" },
-      { text: "It is not that we have a short time to live, but that we waste a great deal of it.", author: "— SENECA" },
-      { text: "A man then must stand upright, not be kept upright by others.", author: "— MARCUS AURELIUS" },
-      { text: "That which does not kill me, makes me stronger.", author: "— FRIEDRICH NIETZSCHE" },
-      { text: "Grant me the serenity to accept the things I cannot change, courage to change the things that I can, and wisdom to know the difference.", author: "— REINHOLD NIEBUHR" },
-      { text: "It is my ambition to say in ten sentences what everyone else says in a book.", author: "— FRIEDRICH NIETZSCHE" },
-      { text: "Cowards die many times before their deaths; the valiant never taste of death but once.", author: "— WILLIAM SHAKESPEARE" },
-    ];
+    (function () {
+      const quotes = [
+        { text: "A man who lives each day as it was his last, neither fears nor longs the next day.", author: "— SENECA" },
+        { text: "Talking nonsense is the sole privilege mankind possesses over the other organisms. It's by talking nonsense that one gets to the truth.", author: "— FYODOR DOSTOEVSKY" },
+        { text: "There is a certain beauty in chaos, in the uncontrollable.", author: "— UNKNOWN" },
+        { text: "It is not that we have a short time to live, but that we waste a great deal of it.", author: "— SENECA" },
+        { text: "A man then must stand upright, not be kept upright by others.", author: "— MARCUS AURELIUS" },
+        { text: "That which does not kill me, makes me stronger.", author: "— FRIEDRICH NIETZSCHE" },
+        { text: "Grant me the serenity to accept the things I cannot change, courage to change the things that I can, and wisdom to know the difference.", author: "— REINHOLD NIEBUHR" },
+        { text: "It is my ambition to say in ten sentences what everyone else says in a book.", author: "— FRIEDRICH NIETZSCHE" },
+        { text: "Cowards die many times before their deaths; the valiant never taste of death but once.", author: "— WILLIAM SHAKESPEARE" },
+      ];
 
-    let current = 0;
+      let current = 0;
 
-    const quoteText   = document.getElementById('quote-text');
-    const quoteAuthor = document.getElementById('quote-author');
-    const counter     = document.getElementById('quote-counter');
-    const btnPrev     = document.getElementById('btn-prev');
-    const btnNext     = document.getElementById('btn-next');
+      const quoteText   = document.getElementById('quote-text');
+      const quoteAuthor = document.getElementById('quote-author');
+      const counter     = document.getElementById('quote-counter');
+      const btnPrev     = document.getElementById('btn-prev');
+      const btnNext     = document.getElementById('btn-next');
 
-    function pad(n) { return String(n).padStart(2, '0'); }
+      function pad(n) { return String(n).padStart(2, '0'); }
 
-    function show(index) {
-      quoteText.textContent   = '\u201c' + quotes[index].text + '\u201d';
-      quoteAuthor.textContent = quotes[index].author;
-      counter.textContent     = pad(index + 1) + ' / ' + pad(quotes.length);
-      btnPrev.style.opacity        = index === 0 ? '0.2' : '0.7';
-      btnPrev.style.pointerEvents  = index === 0 ? 'none' : 'auto';
-      btnNext.style.opacity        = index === quotes.length - 1 ? '0.2' : '0.7';
-      btnNext.style.pointerEvents  = index === quotes.length - 1 ? 'none' : 'auto';
-    }
+      function show(index) {
+        quoteText.textContent   = '\u201c' + quotes[index].text + '\u201d';
+        quoteAuthor.textContent = quotes[index].author;
+        counter.textContent     = pad(index + 1) + ' / ' + pad(quotes.length);
+        btnPrev.style.opacity        = index === 0 ? '0.2' : '0.7';
+        btnPrev.style.pointerEvents  = index === 0 ? 'none' : 'auto';
+        btnNext.style.opacity        = index === quotes.length - 1 ? '0.2' : '0.7';
+        btnNext.style.pointerEvents  = index === quotes.length - 1 ? 'none' : 'auto';
+      }
 
-    btnPrev.addEventListener('click', () => { if (current > 0) { current--; show(current); } });
-    btnNext.addEventListener('click', () => { if (current < quotes.length - 1) { current++; show(current); } });
+      btnPrev.addEventListener('click', () => { if (current > 0) { current--; show(current); } });
+      btnNext.addEventListener('click', () => { if (current < quotes.length - 1) { current++; show(current); } });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft'  && current > 0)                  { current--; show(current); }
-      if (e.key === 'ArrowRight' && current < quotes.length - 1)  { current++; show(current); }
-    });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft'  && current > 0)                  { current--; show(current); }
+        if (e.key === 'ArrowRight' && current < quotes.length - 1)  { current++; show(current); }
+      });
 
-    show(0);
-
-    window.addEventListener('unload', () => {});
-    window.addEventListener('pageshow', () => show(current));
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) show(current); });
+      show(0);
+    })();
   </script>
   <script src="cursor.js"></script>
 </body>
