@@ -196,9 +196,11 @@
 
     show(0);
 
-    window.addEventListener('pageshow', (e) => {
-      if (e.persisted) show(current);
-    });
+    // Force fresh load on every visit (bypasses bfcache)
+    window.addEventListener('unload', () => {});
+
+    // Re-run in case bfcache restores a stale snapshot
+    window.addEventListener('pageshow', () => show(current));
   </script>
   <script src="cursor.js"></script>
 </body>
