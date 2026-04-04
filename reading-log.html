@@ -45,18 +45,48 @@
     body { -webkit-font-smoothing: antialiased; overflow: hidden; }
     @keyframes blink { 0%, 49% { opacity:1; } 50%, 100% { opacity:0; } }
     .blink { animation: blink 1s step-end infinite; }
+    .crt-text {
+      display: inline-block;
+      background: repeating-linear-gradient(
+        180deg,
+        #050508 0px,
+        #1a1a26 1px,
+        #6a6a7a 2.5px,
+        #1a1a26 4px,
+        #050508 5px
+      );
+      background-size: 100% 5px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: crt-roll 1.5s linear infinite, crt-flicker 6s step-end infinite;
+    }
+    @keyframes crt-roll {
+      from { background-position: 0 0; }
+      to   { background-position: 0 5px; }
+    }
+    @keyframes crt-flicker {
+      0%, 87%, 100% { filter: brightness(1); }
+      89%           { filter: brightness(0.78); }
+      91%           { filter: brightness(1.12); }
+      93%           { filter: brightness(0.84); }
+      95%           { filter: brightness(1.06); }
+      97%           { filter: brightness(1); }
+    }
     @media (max-width: 767px) {
-      #clock-widget { display: none !important; }
       #rl-content { padding-left: 0; padding-right: 0; }
     }
   </style>
 </head>
 <body class="h-screen w-screen bg-white overflow-hidden">
 
+  <!-- Scroll banner -->
+  <div id="scroll-banner" style="position:fixed; top:0; left:0; right:0; height:68px; background:rgba(249,249,251,0.22); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:49; opacity:0; transition:opacity 0.25s ease; pointer-events:none;"></div>
+
   <!-- Fixed header -->
   <div class="fixed top-0 left-0 right-0 z-50 px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
     <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors pointer-events-auto">[ RETURN TO HOME ]</a>
-    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">READING LOG</span>
+    <span class="crt-text text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">READING LOG</span>
   </div>
 
   <!-- Main content -->
@@ -71,7 +101,7 @@
           <div style="position:absolute; top:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
           <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
           <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
-          <p style="font-size:15px; line-height:1.8; color:#6b7280;">Welcome to the reading section of my website. Below I listed some of the books I read roughly in descending order of recency and relative significance to me.</p>
+          <p style="font-size:15px; line-height:1.8; color:#6b7280;">Welcome to the reading section of my website. Below I have listed some of the books I read roughly in descending order of recency and relative significance to me.</p>
         </div>
       </div>
 
@@ -152,20 +182,14 @@
     </div>
   </div>
 
-  <!-- Live clock -->
-  <div id="clock-widget" class="fixed bottom-8 right-12 flex flex-col items-end z-50">
-    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
-    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
-  </div>
-
-  <script>
-    function tick() {
-      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
-      document.getElementById('clock').textContent = t;
-    }
-    setInterval(tick, 1000);
-    tick();
-  </script>
+<script>
+  (function () {
+    const banner = document.getElementById('scroll-banner');
+    document.getElementById('rl-content').addEventListener('scroll', function () {
+      banner.style.opacity = this.scrollTop > 10 ? '1' : '0';
+    }, { passive: true });
+  })();
+</script>
 <script src="cursor.js"></script>
 </body>
 </html>

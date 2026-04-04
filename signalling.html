@@ -31,14 +31,45 @@
   <style>
     * { font-family: 'Inter', sans-serif; }
     body { -webkit-font-smoothing: antialiased; }
+    .crt-text {
+      display: inline-block;
+      background: repeating-linear-gradient(
+        180deg,
+        #050508 0px,
+        #1a1a26 1px,
+        #6a6a7a 2.5px,
+        #1a1a26 4px,
+        #050508 5px
+      );
+      background-size: 100% 5px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: crt-roll 1.5s linear infinite, crt-flicker 6s step-end infinite;
+    }
+    @keyframes crt-roll {
+      from { background-position: 0 0; }
+      to   { background-position: 0 5px; }
+    }
+    @keyframes crt-flicker {
+      0%, 87%, 100% { filter: brightness(1); }
+      89%           { filter: brightness(0.78); }
+      91%           { filter: brightness(1.12); }
+      93%           { filter: brightness(0.84); }
+      95%           { filter: brightness(1.06); }
+      97%           { filter: brightness(1); }
+    }
   </style>
 </head>
 <body class="h-screen w-screen" style="background:#f9f9fb;">
 
+  <!-- Scroll banner -->
+  <div id="scroll-banner" style="position:fixed; top:0; left:0; right:0; height:68px; background:rgba(249,249,251,0.22); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:49; opacity:0; transition:opacity 0.25s ease; pointer-events:none;"></div>
+
   <!-- Fixed header -->
-  <div class="fixed top-0 left-0 right-0 z-50 px-10 py-8 flex justify-between items-start">
+  <div id="main-header" class="fixed top-0 left-0 right-0 z-50 px-10 py-8 flex justify-between items-start">
     <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors">[ RETURN TO HOME ]</a>
-    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">SIGNALLING</span>
+    <span class="crt-text text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-900">SIGNALLING</span>
   </div>
 
   <style>
@@ -52,15 +83,15 @@
     .bullet-list li { font-size:15px; line-height:1.8; color:#6b7280; padding-left:1.2rem; position:relative; }
     .bullet-list li::before { content:''; position:absolute; left:0; top:0.75em; width:4px; height:4px; border-radius:50%; background:#c8c8ca; }
     @media (max-width: 767px) {
-      #clock-widget { display: none !important; }
       #sig-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
       .cv-header { flex-direction: column !important; gap: 0.2rem !important; }
       .cv-date { font-size: 12px !important; }
+      #main-header { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
     }
   </style>
 
   <!-- Main content — scrollable to handle CV length -->
-  <div style="height:100vh; overflow-y:auto; padding-top:90px; padding-bottom:120px; display:flex; justify-content:center;">
+  <div id="sig-scroll" style="height:100vh; overflow-y:auto; padding-top:90px; padding-bottom:120px; display:flex; justify-content:center;">
     <div id="sig-container" style="display:flex; flex-direction:column; gap:0; width:700px;">
 
       <!-- Intro text -->
@@ -92,7 +123,7 @@
               <span class="cv-date">Jan 2026 — present</span>
             </div>
             <ul class="bullet-list">
-              <li>Most recently, I have been doing business development for a web3 company.</li>
+              <li>Most recently, I have been doing business development for a company in the intersection of gambling and web3.</li>
             </ul>
           </div>
 
@@ -102,9 +133,9 @@
               <span class="cv-date">Jun 2024 — Jan 2026</span>
             </div>
             <ul class="bullet-list">
-              <li>I built out ecosystem development pipeline and selected teams for the company's grants program.</li>
-              <li>Found leads at both industry events and via targeted outreach.</li>
-              <li>Managed relationships with existing teams in the ecosystem.</li>
+              <li>I built out ecosystem development pipelines and selected teams for the company's grants program.</li>
+              <li>Managed and improved relationships with existing teams in the ecosystem.</li>
+              <li>Found leads at both industry events and through reaching out.</li>
             </ul>
           </div>
 
@@ -114,8 +145,8 @@
               <span class="cv-date">Apr 2024 — Jun 2024</span>
             </div>
             <ul class="bullet-list">
-              <li>I primarily helped with marketing tasks related to driving the early adoption of company's GameFi product.</li>
-              <li>Supported social media managers in building content for the product's marketing channels.</li>
+              <li>I primarily helped with marketing tasks related to building an adoption of company's GameFi product.</li>
+              <li>Supported in building and writing content for the product's marketing channels.</li>
             </ul>
           </div>
 
@@ -134,13 +165,13 @@
           <div style="position:absolute; bottom:0; left:0; width:6px; height:6px; background:#1d1d1f;"></div>
           <div style="position:absolute; bottom:0; right:0; width:6px; height:6px; background:#1d1d1f;"></div>
           <ul class="bullet-list">
-              <li>Superteam UK member</li>
-              <li>Attended crypto industry conferences and spoke at crypto events</li>
-              <li>Helped with hosting a crypto event</li>
-              <li>I code Python, TS</li>
-              <li>Built n personal tools with AI</li>
-              <li>I speak 3 languages natively</li>
-              <li>UK nationals <a href="athletics.html" style="text-decoration:underline; text-decoration-skip-ink:none; color:#6b7280; transition:color 0.2s ease;" onmouseover="this.style.color='rgb(62,207,110)'" onmouseout="this.style.color='#6b7280'">athlete</a> in calisthenics</li>
+              <li>Superteam UK member.</li>
+              <li>Attended crypto industry conferences and spoke at crypto events.</li>
+              <li>Helped with hosting a crypto event.</li>
+              <li>I code Python, TS.</li>
+              <li>Built tens of personal tools with AI.</li>
+              <li>I speak 3 languages natively.</li>
+              <li>UK nationals <a href="athletics.html" style="text-decoration:underline; text-decoration-skip-ink:none; color:#6b7280; transition:color 0.2s ease;" onmouseover="this.style.color='rgb(62,207,110)'" onmouseout="this.style.color='#6b7280'">athlete</a> in calisthenics.</li>
             </ul>
         </div>
       </div>
@@ -160,8 +191,8 @@
               <span class="cv-role">Loreto College (Manchester, UK)</span>
             </div>
             <ul class="bullet-list">
-              <li>A-levels: Mathematics, Economics, Physics</li>
-              <li>AS-levels: Further Mathematics</li>
+              <li>A-levels: Mathematics, Economics, Physics.</li>
+              <li>AS-levels: Further Mathematics.</li>
             </ul>
           </div>
         </div>
@@ -171,20 +202,6 @@
     </div>
   </div>
 
-  <!-- Live clock -->
-  <div id="clock-widget" class="fixed bottom-8 right-10 flex flex-col items-end z-50">
-    <span class="text-[10px] font-bold text-zinc-400 tracking-widest uppercase">London / UTC+0</span>
-    <span id="clock" class="text-xs font-bold text-zinc-900 tabular-nums"></span>
-  </div>
-
-  <script>
-    function tick() {
-      const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false });
-      document.getElementById('clock').textContent = t;
-    }
-    setInterval(tick, 1000);
-    tick();
-  </script>
   <script>
     const blinkSections = [
       { sectionId: 'section-experience', blinkId: 'blink-experience' },
@@ -201,6 +218,14 @@
         indicator.classList.toggle('blink', inside);
       });
     });
+  </script>
+  <script>
+    (function () {
+      const banner = document.getElementById('scroll-banner');
+      document.getElementById('sig-scroll').addEventListener('scroll', function () {
+        banner.style.opacity = this.scrollTop > 10 ? '1' : '0';
+      }, { passive: true });
+    })();
   </script>
   <script src="cursor.js"></script>
 </body>

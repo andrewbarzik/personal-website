@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(find /c/Users/barzi/Desktop/personal-website -type f -name \"*.css\" -exec basename {} \\\\;)"
+    ]
+  }
+}

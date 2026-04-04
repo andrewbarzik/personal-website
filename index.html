@@ -43,6 +43,50 @@
   <style>
     * { font-family: 'Inter', sans-serif; }
     body { -webkit-font-smoothing: antialiased; overflow: hidden; }
+    .crt-text {
+      display: inline-block;
+      background: repeating-linear-gradient(
+        180deg,
+        #050508 0px,
+        #1a1a26 1px,
+        #6a6a7a 2.5px,
+        #1a1a26 4px,
+        #050508 5px
+      );
+      background-size: 100% 5px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: crt-roll 1.5s linear infinite, crt-flicker 6s step-end infinite;
+    }
+    @keyframes crt-roll {
+      from { background-position: 0 0; }
+      to   { background-position: 0 5px; }
+    }
+    @keyframes crt-flicker {
+      0%, 87%, 100% { filter: brightness(1); }
+      89%           { filter: brightness(0.78); }
+      91%           { filter: brightness(1.12); }
+      93%           { filter: brightness(0.84); }
+      95%           { filter: brightness(1.06); }
+      97%           { filter: brightness(1); }
+    }
+    .btn-corner { opacity: 0; }
+    #access-btn:hover .btn-corner {
+      animation: corner-lock 0.3s steps(1, end) forwards;
+    }
+    @keyframes corner-lock {
+      0%   { opacity: 1;   border-color: #9ca3af; }
+      20%  { opacity: 0.3; border-color: #9ca3af; }
+      25%  { opacity: 1;   border-color: #9ca3af; }
+      55%  { opacity: 1;   border-color: #9ca3af; }
+      60%  { opacity: 0.2; border-color: #6b7280; }
+      65%  { opacity: 1;   border-color: #9ca3af; }
+      80%  { opacity: 1;   border-color: #9ca3af; }
+      85%  { opacity: 0.4; border-color: #4b5563; }
+      90%  { opacity: 1;   border-color: #18181b; }
+      100% { opacity: 1;   border-color: #18181b; }
+    }
     @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .animate-slow { animation: rotate-slow 120s linear infinite; }
     .animate-slow-reverse { animation: rotate-slow 180s linear infinite reverse; }
@@ -65,7 +109,6 @@
       #main-area { display: none !important; }
       #keys-hint { display: none !important; }
       #mobile-layout { display: flex !important; }
-      #clock-widget { display: none !important; }
     }
   </style>
 </head>
@@ -81,7 +124,7 @@
 
   <!-- Fixed sidebar left -->
   <div id="sidebar" class="fixed left-12 top-1/2 -translate-y-1/2 z-50">
-    <div class="w-[260px] rounded-[2rem] bg-white shadow-[0_30px_60px_rgba(0,0,0,0.05)] py-10 px-6">
+    <div class="w-[260px] bg-white py-10 px-6" style="clip-path:polygon(14px 0%,calc(100% - 14px) 0%,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0% calc(100% - 14px),0% 14px); filter:drop-shadow(0 30px 60px rgba(0,0,0,0.05));">
       <div class="mb-6 text-center">
         <span class="text-[13px] uppercase tracking-[0.15em] text-[#7c7e84] font-semibold">[ INDEX ]</span>
       </div>
@@ -95,12 +138,12 @@
   <!-- Mobile layout (hidden on desktop) -->
   <div id="mobile-layout">
     <div id="mobile-nav"></div>
-    <div id="mobile-card" style="background:white; border-radius:2rem; box-shadow:0 10px 40px rgba(0,0,0,0.04); overflow:hidden; transition:opacity 0.2s ease;">
+    <div id="mobile-card" style="background:white; overflow:hidden; transition:opacity 0.2s ease; clip-path:polygon(14px 0%,calc(100% - 14px) 0%,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0% calc(100% - 14px),0% 14px); filter:drop-shadow(0 10px 30px rgba(0,0,0,0.07));">
       <div id="mobile-card-image-wrap" style="width:100%; height:180px; overflow:hidden; display:none;">
         <img id="mobile-card-image" src="" alt="" style="width:100%; height:100%; object-fit:cover;" />
       </div>
       <div style="padding:2rem; display:flex; flex-direction:column; gap:1.25rem;">
-        <h2 id="mobile-card-title" style="font-size:14px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600; color:#18181b;"></h2>
+        <h2 id="mobile-card-title" class="crt-text" style="font-size:14px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600; color:#18181b;"></h2>
         <p id="mobile-card-desc" style="font-size:13px; line-height:1.6; color:#71717a; font-weight:500;"></p>
         <div style="display:flex; justify-content:center;">
           <button id="mobile-access-btn" style="padding:0.75rem 2.5rem; background:transparent; color:#18181b; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; font-family:'Inter',sans-serif; border:none;">[ ACCESS ]</button>
@@ -113,7 +156,7 @@
   <div id="main-area" class="pl-[280px] h-screen flex items-center justify-center" style="position:relative; z-index:10; margin-left:-280px;">
     <!-- Card -->
     <div class="pointer-events-auto">
-        <div id="card-inner" class="w-[320px] bg-white rounded-[2rem] shadow-[0_10px_40px_rgba(0,0,0,0.04)] flex flex-col overflow-hidden" style="transition:opacity 0.2s ease;">
+        <div id="card-inner" class="w-[320px] bg-white flex flex-col overflow-hidden" style="transition:opacity 0.2s ease; clip-path:polygon(14px 0%,calc(100% - 14px) 0%,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0% calc(100% - 14px),0% 14px); filter:drop-shadow(0 10px 30px rgba(0,0,0,0.07));">
 
           <!-- Section image (hidden when no image) -->
           <div id="card-image-wrap" class="w-full h-[140px] overflow-hidden hidden">
@@ -122,17 +165,17 @@
 
           <!-- Text content -->
           <div class="p-8 flex flex-col items-start text-left space-y-6">
-            <h2 id="card-title" class="text-[14px] uppercase tracking-wider font-semibold text-zinc-900"></h2>
+            <h2 id="card-title" class="crt-text text-[14px] uppercase tracking-wider font-semibold text-zinc-900"></h2>
             <p id="card-desc" class="text-[13px] leading-relaxed text-zinc-500 font-medium"></p>
 
             <!-- ACCESS button -->
             <div class="w-full flex justify-center">
-              <button id="access-btn" class="relative px-10 py-3 bg-transparent text-zinc-900 text-[11px] font-bold tracking-[0.2em] uppercase group transition-all duration-300">
+              <button id="access-btn" class="relative px-10 py-3 bg-transparent text-zinc-900 text-[11px] font-bold tracking-[0.2em] uppercase">
                 <span class="relative z-10">[ ACCESS ]</span>
-                <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-zinc-900 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-zinc-900 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-zinc-900 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-zinc-900 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div class="btn-corner absolute top-0 left-0 w-2 h-2 border-t border-l"></div>
+                <div class="btn-corner absolute top-0 right-0 w-2 h-2 border-t border-r"></div>
+                <div class="btn-corner absolute bottom-0 left-0 w-2 h-2 border-b border-l"></div>
+                <div class="btn-corner absolute bottom-0 right-0 w-2 h-2 border-b border-r"></div>
               </button>
             </div>
           </div>
@@ -144,13 +187,12 @@
   <!-- Atmospheric gradient -->
   <div class="fixed top-0 right-0 w-1/3 h-full bg-gradient-to-l from-zinc-100/20 to-transparent pointer-events-none -z-10"></div>
 
-
   <script>
     const sections = [
       { id: 'introduction', label: 'INTRODUCTION', index: 1, desc: 'A purpose of the website / an overview of the sections.',                              url: 'introduction.html', image: 'assets/hands.jpg',             imagePosition: 'center' },
-      { id: 'signalling',   label: 'SIGNALLING',   index: 2, desc: 'An overview of the things that I have done or learned / informal CV.',             url: 'signalling.html',   image: 'assets/pilot_signalling.jpg',  imagePosition: 'center' },
-      { id: 'philosophy',   label: 'PHILOSOPHY',   index: 3, desc: 'A collection of quotes / aphorisms that influenced my character.',            url: 'philosophy.html',   image: 'assets/salzburg_philosophy.jpg', imagePosition: 'center' },
-      { id: 'athletics',    label: 'ATHLETICS',    index: 4, desc: 'My obsession and pursuit in athletics / accomplishments.',                          url: 'athletics.html',    image: 'assets/azariancross.jpg',      imagePosition: 'top' },
+      { id: 'signalling',   label: 'SIGNALLING',   index: 2, desc: 'An overview of the things that I have done / an informal CV.',             url: 'signalling.html',   image: 'assets/pilot_signalling.jpg',  imagePosition: 'center' },
+      { id: 'philosophy',   label: 'PHILOSOPHY',   index: 3, desc: 'A collection of quotes and aphorisms / concepts that influenced me.',            url: 'philosophy.html',   image: 'assets/salzburg_philosophy.jpg', imagePosition: 'center' },
+      { id: 'athletics',    label: 'ATHLETICS',    index: 4, desc: 'My obsession and pursuit of athleticism / accomplishments.',                          url: 'athletics.html',    image: 'assets/azariancross.jpg',      imagePosition: 'top' },
       { id: 'reading',      label: 'READING LOG',  index: 5, desc: 'A collection of books that I have read / reread in the last year or so.',                        url: 'reading-log.html',  image: 'assets/bookstore.jpg',         imagePosition: 'center' },
     ];
 
@@ -197,16 +239,16 @@
       });
     }
 
-    function updateDots(id) { /* dots removed with orbit */ }
+    function updateDots(id) { /* handled by canvas */ }
 
     function setActive(id) {
+      window._activeSectionId = id;
       const card = document.getElementById('card-inner');
       const mobileCard = document.getElementById('mobile-card');
 
       // Fade out cards
       card.style.opacity = '0';
       mobileCard.style.opacity = '0';
-      if (window.setMeshHighlight) window.setMeshHighlight(false);
       const line = document.getElementById('active-line');
       if (line) line.style.opacity = '0';
 
@@ -253,9 +295,6 @@
         // Fade in cards
         card.style.opacity = '1';
         mobileCard.style.opacity = '1';
-        if (window.setMeshActive)      window.setMeshActive(id);
-        if (window.setMeshHighlight)   window.setMeshHighlight(true);
-        if (window.setMeshPunchReturn) window.setMeshPunchReturn();
         if (line) line.style.opacity = '1';
       }, 200);
     }
@@ -337,7 +376,6 @@
       const canvas = document.getElementById('hero-bg');
       const ctx    = canvas.getContext('2d');
 
-      const COLS   = 48, ROWS = 30;
       const WALL_X = 6.0, WALL_Y = 3.8;
       const ROT_Y  = -1.35, CAM_Z = 8.0;
       const TILT   = 0.18;
@@ -347,26 +385,30 @@
       const RZ_FAR  = -WALL_X * sinBase;
       const RZ_SPAN = RZ_FAR - RZ_NEAR;
 
-      // Each section gets a fixed tile on the wall — scattered naturally in the visible centre area
-      const SECTION_TILES = {
-        introduction: { c: 41, r: 11 },
-        signalling:   { c: 39, r: 13 },
-        philosophy:   { c: 43, r: 14 },
-        athletics:    { c: 36, r: 9  },
-        reading:      { c: 42, r: 17 },
-      };
-      let activeSection = 'introduction';
-      window.setMeshActive    = id => { activeSection = id; tileScale = 1.0; };
-      let camZOffset = 0;
-      window.setMeshPunch       = () => { camZOffset = -2.5; };
-      window.setMeshPunchReturn = () => {};
-      // Highlight fade
-      let hlAlpha = 1, hlTarget = 1;
-      window.setMeshHighlight = show => { hlTarget = show ? 1 : 0; };
-      // Active tile scale — lerps from 1.0 → 1.32 when section changes (subtle zoom-in)
-      let tileScale = 1.32;
+      // ── Per-section dot highlight system ──────────────────────────────
+      const SECTION_KEYS = ['introduction', 'signalling', 'philosophy', 'athletics', 'reading'];
 
-      function drawRoundedQuad(c, rf) {
+      // Fast deterministic integer hash (Wang hash variant)
+      function ihash(n) {
+        n = Math.imul((n | 0) ^ ((n >>> 16) | 0), 0x45d9f3b);
+        n = Math.imul(n ^ (n >>> 16), 0x45d9f3b);
+        return (n ^ (n >>> 16)) >>> 0;
+      }
+
+      // Returns true if this (col, row) dot belongs to section sidx's pattern.
+      // Each section gets a stable threshold in [0.40, 0.60] so 40–60% are lit.
+      function isDotHighlighted(sidx, c, r) {
+        const threshold = 0.40 + (ihash(sidx * 7919 + 42) / 0x100000000) * 0.20;
+        return (ihash(sidx * 100003 + c * 1009 + r) / 0x100000000) < threshold;
+      }
+
+      let _dotId    = null;   // currently displayed section
+      let _dotAlpha = 0.0;    // 0 → 1 fade progress
+      const DOT_FADE = 0.015; // ~1 s fade at 60 fps — atmospheric
+      // ─────────────────────────────────────────────────────────────────
+
+      // Octagon chamfer — straight 45° cuts matching the site's clip-path aesthetic.
+      function drawChamferedQuad(c, rf) {
         ctx.beginPath();
         for (let i = 0; i < 4; i++) {
           const prev = c[(i + 3) % 4], curr = c[i], next = c[(i + 1) % 4];
@@ -377,49 +419,43 @@
           const p1x = curr.x + (ax/la)*r, p1y = curr.y + (ay/la)*r;
           const p2x = curr.x + (bx/lb)*r, p2y = curr.y + (by/lb)*r;
           if (i === 0) ctx.moveTo(p1x, p1y); else ctx.lineTo(p1x, p1y);
-          ctx.quadraticCurveTo(curr.x, curr.y, p2x, p2y);
+          ctx.lineTo(p2x, p2y);
         }
         ctx.closePath();
       }
 
-      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width  = window.innerWidth  * dpr;
+        canvas.height = window.innerHeight * dpr;
+      }
       resize();
       window.addEventListener('resize', resize);
 
-      // 3 drifting columns — alternating up/down, drift and fade at edges
-      const DRIFT_COLS   = [13, 29, 36, 41, 44];
-      const DRIFT_DIRS   = [1,  1, -1,  1,  0];
-      const DRIFT_SPEED  = 0.00075;
-      const DRIFT_RANGE  = WALL_Y * 2;
-      const driftOffsets = [0, 0.2, 0, 0, 0];
-
-      let time = 0;
       function frame() {
+        const dpr = window.devicePixelRatio || 1;
+        const W   = window.innerWidth;
+        const H   = window.innerHeight;
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        hlAlpha    += (hlTarget    - hlAlpha)    * 0.22;
-        tileScale  += (1.32        - tileScale)  * 0.06;
-        camZOffset += (0 - camZOffset) * 0.07;
-        const rowSpacing = (WALL_Y * 2) / (ROWS - 1);
-        for (let i = 0; i < 5; i++) {
-          if (DRIFT_DIRS[i] === 0) continue;
-          driftOffsets[i] += DRIFT_DIRS[i] * DRIFT_SPEED;
-          // Wrap modulo one row spacing — the reset is invisible because
-          // the exiting dot is already at edgeFade=0 when it wraps
-          driftOffsets[i] = ((driftOffsets[i] % rowSpacing) + rowSpacing) % rowSpacing;
-        }
-
         ctx.save();
-        ctx.translate(canvas.width * 0.5, canvas.height * 0.5);
+        ctx.scale(dpr, dpr);
+        ctx.translate(W * 0.5, H * 0.5);
         ctx.rotate(TILT);
-        ctx.translate(-canvas.width * 0.5, -canvas.height * 0.5);
+        ctx.translate(-W * 0.5, -H * 0.5);
 
-        const FOC = canvas.height;
-        const VPX = canvas.width * 0.70;
-        const VPY = canvas.height * 0.50;
+        const FOC = H;
+        const VPX = W * 0.70;
+        const VPY = H * 0.50;
         const WS  = 13.0 * (RZ_NEAR + CAM_Z) / FOC;
 
-        const rotY = ROT_Y + Math.sin(time * 0.05) * 0.015;
+        const PITCH_PX    = 28;
+        const WORLD_PITCH = PITCH_PX * CAM_Z / FOC;
+        const COLS = Math.round(WALL_X * 2 / WORLD_PITCH) + 1;
+        const ROWS = Math.round(WALL_Y * 2 / WORLD_PITCH) + 1;
+
+        const rotY = ROT_Y;
         const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
 
         const pts = [];
@@ -428,49 +464,120 @@
             const u = c / (COLS - 1), v = r / (ROWS - 1);
             const wx = (u - 0.5) * WALL_X * 2, wy = (v - 0.5) * WALL_Y * 2;
             const rx = wx * cosY, rz = wx * sinY;
-            const depth = rz + CAM_Z + camZOffset;
+            const depth = rz + CAM_Z;
             if (depth <= 0.01) continue;
             pts.push({ wx, wy, rz, depth, c, r });
           }
         }
         pts.sort((a, b) => b.rz - a.rz);
 
-        const activeTile = SECTION_TILES[activeSection];
-        let activeTileCenter = null;
+        // ── Advance highlight fade ───────────────────────────────────────
+        const targetId = window._activeSectionId || 'introduction';
+        if (_dotId !== targetId) { _dotId = targetId; _dotAlpha = 0.0; }
+        _dotAlpha = Math.min(1.0, _dotAlpha + DOT_FADE);
+        const sidx = SECTION_KEYS.indexOf(_dotId);
+        // ─────────────────────────────────────────────────────────────────
 
         for (const p of pts) {
           const t = Math.min(1, Math.max(0, (p.rz - RZ_NEAR) / RZ_SPAN));
           const tileWS = WS;
 
-          const driftIdx = DRIFT_COLS.indexOf(p.c);
-          const wyOff    = driftIdx >= 0 ? driftOffsets[driftIdx] : 0;
-          const effWy    = p.wy + wyOff;
-          const edgeFade = driftIdx >= 0 ? Math.max(0, 1 - Math.pow(effWy / WALL_Y, 2)) : 1;
-
           const offsets = [[-tileWS,-tileWS],[tileWS,-tileWS],[tileWS,tileWS],[-tileWS,tileWS]];
           const corners = offsets.map(([dw, dh]) => {
             const cwx = p.wx + dw;
             const crx = cwx * cosY, crz = cwx * sinY;
-            const cd = crz + CAM_Z + camZOffset;
+            const cd = crz + CAM_Z;
             if (cd <= 0.01) return null;
             const cs = FOC / cd;
-            return { x: VPX + crx * cs, y: VPY + (effWy + dh) * cs };
+            return { x: VPX + crx * cs, y: VPY + (p.wy + dh) * cs };
           });
           if (corners.some(c => c === null)) continue;
 
-          const alpha = (0.03 + (1 - t) * 0.28) * edgeFade;
-          const ch    = Math.round(82 + t * 138);
-          ctx.fillStyle = `rgba(${ch},${ch},${ch},${alpha.toFixed(3)})`;
-          drawRoundedQuad(corners, 0.44);
+          const vy = p.wy / WALL_Y;
+          const vertFade = Math.max(0, 1 - vy * vy);
+          const alpha = (0.01 + (1 - t) * 0.09) * vertFade;
+
+          // ── Highlight: green dots, staggered + one-time glitch ───────
+          if (sidx >= 0 && _dotAlpha > 0 && isDotHighlighted(sidx, p.c, p.r)) {
+            // Per-dot stagger [0, 0.35]: dots trickle in at different times.
+            const stagger = (ihash(p.c * 997 + p.r * 31 + sidx * 13 + 7) / 0x100000000) * 0.35;
+            const dotProgress = Math.max(0, Math.min(1, (_dotAlpha - stagger) / 0.65));
+
+            // One-time stutter: each dot has a fixed moment in [0.25, 0.70]
+            // of its own fade-in where alpha briefly dips. Only active while
+            // the dot is mid-transition (dotProgress < 1), never recurs.
+            const glitchMoment = 0.25 + (ihash(p.c * 113 + p.r * 71 + sidx * 17) / 0x100000000) * 0.45;
+            const nearGlitch   = dotProgress > 0 && dotProgress < 1.0
+                               && Math.abs(dotProgress - glitchMoment) < 0.022;
+            const glitchMult   = nearGlitch ? 0.80 : 1.0;
+
+            const screenX = VPX + p.wx * cosY * (FOC / p.depth);
+            const rightness = Math.max(0, Math.min(1, (screenX - W * 0.28) / (W * 0.42)));
+            const bAlpha = 0.14 * (1 - t * 0.35) * vertFade * dotProgress * rightness * glitchMult;
+            if (bAlpha > 0.004) {
+              ctx.fillStyle = `rgba(0,0,0,${bAlpha.toFixed(3)})`;
+              drawChamferedQuad(corners, 0.28);
+              ctx.fill();
+              continue;
+            }
+          }
+          // ─────────────────────────────────────────────────────────────
+
+          ctx.fillStyle = `rgba(0,0,0,${alpha.toFixed(3)})`;
+          drawChamferedQuad(corners, 0.28);
           ctx.fill();
         }
 
-
         ctx.restore();
-        time += 0.01;
         requestAnimationFrame(frame);
       }
       frame();
+    })();
+  </script>
+  <script>
+    (function () {
+      const noiseCanvases = [];
+
+      function attachNoise(wrapId) {
+        const wrap = document.getElementById(wrapId);
+        if (!wrap) return;
+        wrap.style.position = 'relative';
+        const canvas = document.createElement('canvas');
+        canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.06;';
+        wrap.appendChild(canvas);
+        noiseCanvases.push(canvas);
+      }
+
+      attachNoise('card-image-wrap');
+      attachNoise('mobile-card-image-wrap');
+
+      let tick = 0;
+      function loop() {
+        tick++;
+        // Redraw every 3 frames — fast enough to flicker, not overwhelming
+        if (tick % 3 === 0) {
+          noiseCanvases.forEach(canvas => {
+            const w = canvas.parentElement ? canvas.parentElement.offsetWidth  : 0;
+            const h = canvas.parentElement ? canvas.parentElement.offsetHeight : 0;
+            if (w === 0 || h === 0) return;
+            if (canvas.width !== w || canvas.height !== h) {
+              canvas.width  = w;
+              canvas.height = h;
+            }
+            const ctx  = canvas.getContext('2d');
+            const data = ctx.createImageData(w, h);
+            const buf  = data.data;
+            for (let i = 0; i < buf.length; i += 4) {
+              const v = Math.random() > 0.5 ? 255 : 0;
+              buf[i] = buf[i + 1] = buf[i + 2] = v;
+              buf[i + 3] = 255;
+            }
+            ctx.putImageData(data, 0, 0);
+          });
+        }
+        requestAnimationFrame(loop);
+      }
+      loop();
     })();
   </script>
   <script src="cursor.js"></script>
