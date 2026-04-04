@@ -118,7 +118,7 @@
       <div class="quote-area flex items-center justify-center w-full relative min-h-[400px]">
 
         <!-- Quote counter -->
-        <span id="quote-counter" class="absolute top-0 left-0 text-[9px] font-bold tracking-[0.3em] uppercase" style="color: rgba(89,96,101,0.75);">01 / 03</span>
+        <span id="quote-counter" class="absolute top-0 left-0 text-[9px] font-bold tracking-[0.3em] uppercase" style="color: rgba(89,96,101,0.75);"></span>
 
         <!-- Previous button -->
         <button
@@ -195,6 +195,10 @@
     });
 
     show(0);
+
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) show(current);
+    });
   </script>
   <script src="cursor.js"></script>
 </body>
