@@ -278,9 +278,6 @@
       // Fade out cards
       card.style.opacity = '0';
       mobileCard.style.opacity = '0';
-      const line = document.getElementById('active-line');
-      if (line) line.style.opacity = '0';
-
       setTimeout(() => {
         activeId = id;
         const section = sections.find(s => s.id === id);
@@ -324,7 +321,6 @@
         // Fade in cards
         card.style.opacity = '1';
         mobileCard.style.opacity = '1';
-        if (line) line.style.opacity = '1';
       }, 200);
     }
 
