@@ -82,8 +82,6 @@
       97%           { filter: brightness(1); }
     }
     @media (max-width: 767px) {
-      body { overflow-y: auto !important; }
-      #ath-scroll { overflow-y: auto !important; }
       #ath-container { width: 100% !important; padding: 0 1.25rem; box-sizing: border-box; }
       #ath-quote-row { flex-direction: column !important; gap: 1.5rem !important; }
       #main-header { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
@@ -99,7 +97,7 @@
   </div>
 
   <!-- Main content -->
-  <div id="ath-scroll" style="height:100vh; overflow-y:auto; padding-top:90px; padding-bottom:120px; display:flex; justify-content:center;">
+  <div id="ath-scroll" style="height:100vh; overflow:hidden; padding-top:90px; padding-bottom:120px; display:flex; justify-content:center;">
     <div id="ath-container" style="display:flex; flex-direction:column; gap:0; width:700px;">
 
       <style>
