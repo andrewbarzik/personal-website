@@ -6,12 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andrew Barzik</title>
   <meta name="description" content="An overview of my experience, work, and thinking." />
+
+  <!-- Open Graph (Google Discover, LinkedIn, Facebook, Discord, Slack) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.andrewbarzik.com/" />
+  <meta property="og:title" content="Andrew Barzik" />
+  <meta property="og:description" content="An overview of my experience, work, and thinking." />
+  <meta property="og:image" content="https://www.andrewbarzik.com/assets/salzburg_philosophy.jpg" />
+  <meta property="og:image:alt" content="Andrew Barzik" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Andrew Barzik" />
+  <meta name="twitter:description" content="An overview of my experience, work, and thinking." />
+  <meta name="twitter:image" content="https://www.andrewbarzik.com/assets/salzburg_philosophy.jpg" />
+
   <link rel="icon" type="image/jpeg" href="assets/salzburg_philosophy.jpg" />
   <style>* { cursor: none !important; }</style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -45,6 +61,7 @@
   </script>
   <style>
     :root { color-scheme: light; }
+    html { background-color: #f9f9fb; }
     * { font-family: 'Inter', sans-serif; }
     body { -webkit-font-smoothing: antialiased; overflow: hidden; }
     .crt-text {
@@ -117,6 +134,12 @@
   </style>
 </head>
 <body class="h-screen w-screen bg-[#f9f9fb] overflow-hidden">
+
+  <!-- SEO: semantic content for crawlers; visually hidden -->
+  <div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
+    <h1>Andrew Barzik</h1>
+    <p>An overview of my experience, work, and thinking.</p>
+  </div>
 
   <!-- Hero mesh background -->
   <canvas id="hero-bg" style="position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; touch-action:none;"></canvas>
