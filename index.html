@@ -236,6 +236,7 @@
     sections.forEach(s => { if (s.image) { const i = new Image(); i.src = s.image; } });
 
     let activeId = 'introduction';
+    let _sectionOpenedFrom = null;
 
     function buildNav() {
       const nav = document.getElementById('sidebar-nav');
@@ -270,15 +271,12 @@
 
     function updateDots(id) { /* handled by canvas */ }
 
-    function setActive(id) {
+    function setActive(id, immediate) {
       window._activeSectionId = id;
       const card = document.getElementById('card-inner');
       const mobileCard = document.getElementById('mobile-card');
 
-      // Fade out cards
-      card.style.opacity = '0';
-      mobileCard.style.opacity = '0';
-      setTimeout(() => {
+      function apply() {
         activeId = id;
         const section = sections.find(s => s.id === id);
 
@@ -317,11 +315,23 @@
 
         updateDots(id);
         buildNav();
+      }
 
-        // Fade in cards
+      if (immediate) {
+        apply();
         card.style.opacity = '1';
         mobileCard.style.opacity = '1';
-      }, 200);
+      } else {
+        // Fade out cards
+        card.style.opacity = '0';
+        mobileCard.style.opacity = '0';
+        setTimeout(() => {
+          apply();
+          // Fade in cards
+          card.style.opacity = '1';
+          mobileCard.style.opacity = '1';
+        }, 200);
+      }
     }
 
     function copyToClipboard(text, btn) {
@@ -338,9 +348,14 @@
     function closeSection() {
       overlay.style.display = 'none';
       sectionContent.innerHTML = '';
+      if (_sectionOpenedFrom) {
+        setActive(_sectionOpenedFrom, true);
+        _sectionOpenedFrom = null;
+      }
     }
 
     async function openSection(url) {
+      _sectionOpenedFrom = activeId;
       try {
         const res = await fetch(url);
         if (!res.ok) throw new Error('fetch failed');
@@ -374,6 +389,7 @@
         overlay.style.display = 'block';
       } catch (_) {
         // Fallback for file:// protocol — direct navigation
+        sessionStorage.setItem('returnSection', activeId);
         window.location.href = url;
       }
     }
@@ -393,8 +409,11 @@
     });
 
     // Initialize
+    const _returnSection = sessionStorage.getItem('returnSection');
+    sessionStorage.removeItem('returnSection');
+    if (_returnSection) activeId = _returnSection;
     buildNav();
-    setActive('introduction');
+    setActive(_returnSection || 'introduction', !!_returnSection);
   </script>
   <script>
     (function () {

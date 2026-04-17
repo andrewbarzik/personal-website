@@ -86,6 +86,9 @@
     .link-label { color:#9ca3af; transition: color 0.2s ease; text-decoration:none; }
     .link-label .word { text-decoration:underline; text-decoration-skip-ink:none; }
     .link-label:hover { color: #1d1d1f; }
+    .contact-icon { display: flex; }
+    .contact-icon img { filter: brightness(0); opacity: 0.4; transition: opacity 0.2s ease; }
+    .contact-icon:hover img { opacity: 1; }
     @media (min-width: 768px) { #scroll-banner { display: none !important; } }
     @media (max-width: 767px) { #scroll-banner { opacity: 1 !important; } }
     @media (max-width: 767px) {
@@ -124,6 +127,16 @@
             />
           </div>
         </div>
+      </div>
+
+      <!-- Contact icons -->
+      <div style="display:flex; align-items:center; gap:0.75rem; margin-top:0.5rem;">
+        <a href="https://mail.google.com/mail/?view=cm&to=barzikandrew@gmail.com" target="_blank" rel="noopener" class="contact-icon" title="Email">
+          <img src="assets/email_icon.png" alt="Email" style="width:18px; height:18px; object-fit:contain; display:block;" />
+        </a>
+        <a href="https://t.me/andrewbarzik" target="_blank" rel="noopener" class="contact-icon" title="Telegram">
+          <img src="assets/tg_icon.png" alt="Telegram" style="width:18px; height:18px; object-fit:contain; display:block;" />
+        </a>
       </div>
 
       <div style="height:1px; background:#e5e7eb; margin:2.5rem 0;"></div>
